@@ -446,7 +446,8 @@ done_socket(struct lwip_sock *sock)
 #endif /* LWIP_NETCONN_FULLDUPLEX */
 
 /* Translate a socket 'int' into a pointer (only fails if the index is invalid) */
-static struct lwip_sock *
+/* Sid L. 2026-07-01: remove "static" so this can be accessed from user code */
+struct lwip_sock *
 tryget_socket_unconn_nouse(int fd)
 {
   int s = fd - LWIP_SOCKET_OFFSET;
@@ -517,6 +518,8 @@ tryget_socket(int fd)
  *
  * @param fd externally used socket index
  * @return struct lwip_sock for the socket or NULL if not found
+ *
+ *
  */
 static struct lwip_sock *
 get_socket(int fd)
